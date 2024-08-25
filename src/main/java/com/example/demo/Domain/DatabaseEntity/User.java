@@ -1,13 +1,21 @@
 package com.example.demo.Domain.DatabaseEntity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Nationalized;
 
+@Getter
+@Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "Users", uniqueConstraints = {
         @UniqueConstraint(name = "UQ_Email", columnNames = {"Email"}),
         @UniqueConstraint(name = "UQ_PhoneNumber", columnNames = {"PhoneNumber"})
-})
+}
+)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,68 +48,13 @@ public class User {
     @JoinColumn(name = "WorkerType", nullable = false)
     private com.example.demo.Domain.DatabaseEntity.WorkerType workerType;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public User(String name, String lastname, String email, byte[] passwordHash, byte[] passwordSalt, String phoneNumber,WorkerType workerType) {
         this.name = name;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
-    }
-
-    public byte[] getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(byte[] passwordHash) {
         this.passwordHash = passwordHash;
-    }
-
-    public byte[] getPasswordSalt() {
-        return passwordSalt;
-    }
-
-    public void setPasswordSalt(byte[] passwordSalt) {
         this.passwordSalt = passwordSalt;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public com.example.demo.Domain.DatabaseEntity.WorkerType getWorkerType() {
-        return workerType;
-    }
-
-    public void setWorkerType(com.example.demo.Domain.DatabaseEntity.WorkerType workerType) {
         this.workerType = workerType;
     }
-
 }

@@ -1,6 +1,7 @@
-package com.example.demo.Domain.DAO;
+package com.example.demo.DAL.DAO;
 
 import com.example.demo.Domain.DatabaseEntity.User;
+import com.example.demo.Domain.DatabaseEntity.WorkerType;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,5 +21,10 @@ public class UserDAO implements  IUserDAO{
     @Transactional
     public void addUser(User user) {
         entityManager.persist(user);
+    }
+
+    @Override
+    public WorkerType getWorkerType(int id) {
+        return entityManager.find(WorkerType.class, id);
     }
 }
