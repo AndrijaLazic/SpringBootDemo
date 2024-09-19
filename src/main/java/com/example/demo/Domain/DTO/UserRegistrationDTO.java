@@ -2,11 +2,8 @@ package com.example.demo.Domain.DTO;
 
 import com.example.demo.Domain.DatabaseEntity.User;
 import com.example.demo.Domain.DatabaseEntity.WorkerType;
-import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,6 +41,6 @@ public class UserRegistrationDTO {
 
 
     public User DtoToUser(byte[] hash, byte[] salt, WorkerType workerType){
-        return new User(this.name,this.lastname,this.email,hash,salt,this.phoneNumber,workerType);
+        return new User(this.name,this.lastname,this.email,hash,salt,this.phoneNumber,workerType,false);
     }
 }

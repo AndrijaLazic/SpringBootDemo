@@ -21,6 +21,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.sql.SQLDataException;
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class AuthService implements IAuthService {
@@ -43,9 +44,9 @@ public class AuthService implements IAuthService {
         byte[] salt = PasswordClass.GetSalt();
         try {
             byte[] hash = PasswordClass.GetHast(salt,userRegistrationDTO.getPassword());
-            User user =userRegistrationDTO.DtoToUser(hash,salt,workerType);
+            User user = userRegistrationDTO.DtoToUser(hash,salt,workerType);
             userDAO.addUser(user);
-        } catch (NoSuchAlgorithmException| InvalidKeySpecException e) {
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             throw new RuntimeException(e);
         } catch (DataIntegrityViolationException e){
             throw new SQLDataException(e.getMessage());
@@ -53,4 +54,16 @@ public class AuthService implements IAuthService {
 
         logger.info(userRegistrationDTO.toString());
     }
+
+    @Override
+    public List<User> getAllUsers() throws SQLDataException {
+        return userDAO.getAllUsers();
+    }
+
+    @Override
+    public User getUserByEmail(String email) throws SQLDataException {
+        return userDAO.getUser(email);
+    }
+
+
 }

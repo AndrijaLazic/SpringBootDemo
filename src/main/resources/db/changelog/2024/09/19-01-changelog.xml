@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1726743408445-1" author="kebab">
+        <createTable tableName="users" schemaName="dbo">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users"/>
+            </column>
+            <column name="name" type="NVARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastname" type="NVARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="NVARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_salt" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="NVARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="worker_type" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1726743408445-2" author="kebab">
+        <createTable tableName="worker_types" schemaName="dbo">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_workertypes"/>
+            </column>
+            <column name="type_name" type="NVARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1726743408445-3" author="kebab">
+        <createTable tableName="communication_messages" schemaName="dbo">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_communicationmessages"/>
+            </column>
+            <column name="sender_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="communication_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="NVARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1726743408445-4" author="kebab">
+        <createTable tableName="user_communication" schemaName="dbo">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_usercommunication"/>
+            </column>
+            <column name="user1" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user2" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="user1unread" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="user2unread" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1726743408445-5" author="kebab">
+        <addUniqueConstraint columnNames="email" constraintName="UQ_Email" tableName="users"/>
+    </changeSet>
+    <changeSet id="1726743408445-6" author="kebab">
+        <addUniqueConstraint columnNames="phone_number" constraintName="UQ_PhoneNumber" tableName="users"/>
+    </changeSet>
+    <changeSet id="1726743408445-7" author="kebab">
+        <addForeignKeyConstraint baseColumnNames="worker_type" baseTableName="users"
+                                 constraintName="FK_USERS_ON_WORKERTYPE" referencedColumnNames="id"
+                                 referencedTableName="worker_types"/>
+    </changeSet>
+
+</databaseChangeLog>
