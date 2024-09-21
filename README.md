@@ -1,0 +1,1 @@
+Resenje za liquibase naming semu https://stackoverflow.com/questions/77154400/jpa-buddys-reverse-engineering-feature-not-showing-already-mapped-entities

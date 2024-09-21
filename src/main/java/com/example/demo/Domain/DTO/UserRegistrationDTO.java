@@ -41,6 +41,6 @@ public class UserRegistrationDTO {
 
 
     public User DtoToUser(byte[] hash, byte[] salt, WorkerType workerType){
-        return new User(this.name,this.lastname,this.email,hash,salt,this.phoneNumber,workerType,false);
+        return new User(this.name,this.lastname,this.email,hash,salt,this.phoneNumber,workerType);
     }
 }
