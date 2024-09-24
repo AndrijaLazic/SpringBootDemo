@@ -16,6 +16,21 @@ import org.hibernate.annotations.Nationalized;
         @UniqueConstraint(name = "UQ_Email", columnNames = {"Email"}),
         @UniqueConstraint(name = "UQ_PhoneNumber", columnNames = {"PhoneNumber"})
 })
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "sp_insert_user",
+                procedureName = "sp_insert_user",
+                parameters={
+                        @StoredProcedureParameter(name="Name", type=String.class, mode=ParameterMode.IN),
+                        @StoredProcedureParameter(name="Lastname", type=String.class, mode=ParameterMode.IN),
+                        @StoredProcedureParameter(name="Email", type=String.class, mode=ParameterMode.IN),
+                        @StoredProcedureParameter(name="PasswordHash", type=byte[].class, mode=ParameterMode.IN),
+                        @StoredProcedureParameter(name="PasswordSalt", type=byte[].class, mode=ParameterMode.IN),
+                        @StoredProcedureParameter(name="PhoneNumber", type=String.class, mode=ParameterMode.IN),
+                        @StoredProcedureParameter(name="WorkerType", type=int.class, mode=ParameterMode.IN),
+                }
+        )
+})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
