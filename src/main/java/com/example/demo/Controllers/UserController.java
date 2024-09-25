@@ -7,6 +7,8 @@ import com.example.demo.Domain.Shared.Exceptions.RequestResponse;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLDataException;
@@ -17,8 +19,13 @@ import java.util.List;
 public class UserController {
     private AuthService authService;
     Logger logger = LoggerFactory.getLogger(UserController.class);
-    public UserController(AuthService authService) {
+    private Environment env;
+
+    @Autowired
+    public UserController(AuthService authService, Environment env) {
         this.authService = authService;
+        this.env = env;
+        System.out.println(env.getProperty("TipProfila"));
     }
 
     @PostMapping("/Register")
@@ -54,5 +61,10 @@ public class UserController {
         } catch (SQLDataException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @GetMapping("/Enviroment")
+    public String enviroment() {
+        return env.getProperty("TipProfila");
     }
 }

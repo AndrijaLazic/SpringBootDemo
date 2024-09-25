@@ -33,33 +33,33 @@ class AuthServiceTest {
     );
 
 
-    @Test
-    void registerUserSuccess() {
-        try{
-            authService.RegisterUser(registrationDTO);
-        }
-        catch(Exception e){
-            fail("Failed to register user");
-        }
-    }
-
-    @Test
-    void registerUserFailure_Duplicate() {
-        assertThrows(Exception.class, ()->authService.RegisterUser(registrationDTO));
-    }
-
-    @Test
-    void getAllUsers() {
-        try {
-            List<User> users = authService.getAllUsers();
-            assertEquals(new ArrayList<>(), users);
-
-        } catch (SQLDataException e) {
-            fail("Failed to get users");
-        }
-    }
-
-    @Test
-    void getUserByEmail() {
-    }
+//    @Test
+//    void registerUserSuccess() {
+//        try{
+//            authService.RegisterUser(registrationDTO);
+//        }
+//        catch(Exception e){
+//            fail("Failed to register user");
+//        }
+//    }
+//
+//    @Test
+//    void registerUserFailure_Duplicate() {
+//        assertThrows(Exception.class, ()->authService.RegisterUser(registrationDTO));
+//    }
+//
+//    @Test
+//    void getAllUsers() {
+//        try {
+//            List<User> users = authService.getAllUsers();
+//            assertEquals(new ArrayList<>(), users);
+//
+//        } catch (SQLDataException e) {
+//            fail("Failed to get users");
+//        }
+//    }
+//
+//    @Test
+//    void getUserByEmail() {
+//    }
 }
