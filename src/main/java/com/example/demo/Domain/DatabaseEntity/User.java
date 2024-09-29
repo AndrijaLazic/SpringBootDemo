@@ -12,7 +12,7 @@ import org.hibernate.annotations.Nationalized;
 @Setter
 @Entity(name = "User")
 @NoArgsConstructor
-@Table(name = "Users", schema = "dbo", uniqueConstraints = {
+@Table(name = "Users", uniqueConstraints = {
         @UniqueConstraint(name = "UQ_Email", columnNames = {"Email"}),
         @UniqueConstraint(name = "UQ_PhoneNumber", columnNames = {"PhoneNumber"})
 })

@@ -9,7 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 @Getter
 @Setter
 @Entity(name = "UserCommunication")
-@Table(schema = "dbo")
+@Table(name = "UserCommunication")
 public class UserCommunication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
