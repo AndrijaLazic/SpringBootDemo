@@ -12,8 +12,8 @@ import org.hibernate.annotations.Nationalized;
 
 @Getter
 @Setter
-@Entity(name = "WorkerType")
-@Table(name = "WorkerTypes")
+//@Entity(name = "WorkerType")
+//@Table(name = "WorkerTypes")
 public class WorkerType {
     @Id
     @Column(name = "Id", columnDefinition = "tinyint not null")

@@ -9,8 +9,8 @@ import org.hibernate.annotations.Nationalized;
 
 @Getter
 @Setter
-@Entity(name = "CommunicationMessage")
-@Table(name = "CommunicationMessages")
+//@Entity(name = "CommunicationMessage")
+//@Table(name = "CommunicationMessages")
 public class CommunicationMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

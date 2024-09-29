@@ -3,7 +3,8 @@ package com.example.demo.Controllers;
 import com.example.demo.DAL.Repo.ProductRepository;
 import com.example.demo.DAL.Repo.ProductTypeRepository;
 import com.example.demo.Domain.DatabaseEntity.ProductType;
-import com.example.demo.Domain.DatabaseEntity.User;
+import com.example.demo.Domain.Shared.Annotations.DBOperation;
+import com.example.demo.Domain.Shared.Annotations.LogActivity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,5 +29,11 @@ public class ProductController {
     @GetMapping("/ProductTypes")
     public List<ProductType> selectUsers() {
         return productTypeRepository.findAll();
+    }
+
+    @GetMapping("InsertProizvoda")
+    @LogActivity(operation = DBOperation.Insert)
+    public String insertProizvoda(){
+        return "Isertovan Proizvod";
     }
 }

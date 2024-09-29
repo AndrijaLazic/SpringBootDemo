@@ -7,9 +7,9 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 @Getter
-@Setter
-@Entity(name = "UserCommunication")
-@Table(name = "UserCommunication")
+//@Setter
+//@Entity(name = "UserCommunication")
+//@Table(name = "UserCommunication")
 public class UserCommunication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
