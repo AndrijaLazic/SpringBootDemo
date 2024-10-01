@@ -46,7 +46,7 @@ public class OrderServiceImpl {
                 item.setOrder(order);
                 item.setQuantity(entry.getValue());
                 item.setUnitOfMeasure(product.getUnitOfMeasure());
-
+                item.setName(product.getName());
 
                 orderItemList.add(item);
             }
