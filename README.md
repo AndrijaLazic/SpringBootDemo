@@ -3,3 +3,4 @@ Resenje za liquibase naming semu https://stackoverflow.com/questions/77154400/jp
 Swagger url: http://localhost:8080/swagger-ui/index.html
 Izmena na main grani
 Izmena na test grani
+Poslednja izmena na test grani
