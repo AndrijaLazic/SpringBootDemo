@@ -8,6 +8,7 @@
 <!--    <includeAll path="db/changelog/changes"/>-->
 
     <include file="db/changelog/changes/001-initial-create.sql"/>
+    <include file="db/changelog/changes/002-new-data.sql"/>
 <!--    <changeSet id="1726754741483-2" author="kebab">-->
 <!--        <sqlFile path="db/changelog/Scripts/StoredProcedures/sp_insert_user.sql" endDelimiter="GO"/>-->
 <!--    </changeSet>-->

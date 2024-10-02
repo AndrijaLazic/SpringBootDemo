@@ -2,10 +2,13 @@ package com.example.demo.Controllers;
 
 import com.example.demo.DAL.Repo.ProductRepository;
 import com.example.demo.DAL.Repo.ProductTypeRepository;
+import com.example.demo.Domain.DatabaseEntity.Product;
 import com.example.demo.Domain.DatabaseEntity.ProductType;
 import com.example.demo.Domain.Shared.Annotations.DBOperation;
 import com.example.demo.Domain.Shared.Annotations.LogActivity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +34,12 @@ public class ProductController {
         return productTypeRepository.findAll();
     }
 
-    @GetMapping("InsertProizvoda")
+    @GetMapping("/AllProducts")
+    public List<Product> selectAllProducts() {
+        return productRepository.findProductsByProductTypeId(1L,PageRequest.of(1,1, Sort.by(Sort.Order.asc("name"))));
+    }
+
+    @GetMapping("/InsertProizvoda")
     @LogActivity(operation = DBOperation.Insert)
     public String insertProizvoda(){
         return "Isertovan Proizvod";
