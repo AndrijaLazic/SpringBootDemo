@@ -9,6 +9,8 @@
 
     <include file="db/changelog/changes/001-initial-create.sql"/>
     <include file="db/changelog/changes/002-new-data.sql"/>
+    <include file="db/changelog/changes/003-new-data.sql"/>
+    <include file="db/changelog/changes/004-sp_get_tasks_between_dates.sql"/>
 <!--    <changeSet id="1726754741483-2" author="kebab">-->
 <!--        <sqlFile path="db/changelog/Scripts/StoredProcedures/sp_insert_user.sql" endDelimiter="GO"/>-->
 <!--    </changeSet>-->
