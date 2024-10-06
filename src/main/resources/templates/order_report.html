@@ -1,0 +1,84 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <style>
+    h1 {
+      color: Black;
+      text-align: left;
+      font-size: 20px;
+    }
+    h2 {
+      color: Black;
+      font-size: 18px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    th, td {
+      border-bottom: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #8b8b8d;
+      color: white;
+    }
+    .orderItemsByType{
+      margin-bottom: 20px;
+    }
+    body{
+      font-size: 12px;
+    }
+    .header td {
+      border-bottom: 3px solid #ddd;
+    }
+    .data tr, .data td {
+    border: 1px solid #ddd;
+    }
+    .data tr, .data td {
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+<table class="header">
+  <tr>
+    <td></td>
+    <td>
+      <h1 style="text-align: right">Izveštaj o narudžbini</h1>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:left">
+      <h2>HTEC Group</h2>
+    </td>
+    <td>
+      <p style="text-align:right">
+        <b>Datum:</b> <span th:text="${#temporals.format(order.dateOfCreation, 'dd/MM/yyyy')}"></span><br>
+        <b>Broj narudžbine:</b> <span  th:text="${order.orderNumber}"></span>
+      </p>
+    </td>
+  </tr>
+</table>
+<br><br><br>
+<div th:each="entry:${orderItems}" class="orderItemsByType">
+  <table>
+  <thead>
+    <tr>
+      <th th:text="${entry.key}"></th>
+      <th style="width:10%">Jedinica</th>
+      <th style="width:10%">Količina</th>
+    </tr>
+    </thead>
+    <tbody class="data">
+    <tr th:each="orderItem : ${entry.value}">
+      <td th:text="${orderItem.product.name}"></td>
+      <td th:text="${orderItem.product.unitOfMeasure}"></td>
+      <td th:text="${orderItem.quantity}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        h2{
+            text-align: center;
+        }
+        .activities {
+            width: 100%;
+        }
+        .activities, .activities th, .activities td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        #datumPolja{
+            height:30px;
+        }
+        .activities td, th{
+            padding: 5px;
+        }
+        .time{
+            text-align: center;
+        }
+
+        .time span{
+            padding: 0 10px;
+        }
+        .title{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h2>Nedeljna cek lista higijene i repromaterijala toaleta</h2>
+<h3>Odgovorno lice: </h3>
+
+<h3>Za godinu/mesec: <span th:text="${currentDate}"></span> </h3>
+
+<br />
+<table class="activities">
+    <tr><th>Datum obilaska toaleta</th><th>Vreme obilaska toaleta</th></tr>
+    <tr th:each="activity: ${activities}">
+        <td th:text="${#temporals.format(activity.key, 'dd-MM-yyyy')}"></td>
+        <td class="time">
+            <span th:each="time: ${activity.value}" th:text="${time}"></span>
+        </td>
+    </tr>
+</table>
+<table class="activities">
+    <tr>
+        <th colspan="4" class="title">Cek lista periodicnog generalnog odrzavanja toaleta</th>
+    </tr>
+    <tr>
+       <th th:each="task: ${monthlyTasks}">
+           <span th:text="${task.name}"></span>
+       </th>
+    </tr>
+    <tr>
+        <td th:each="task: ${monthlyTasks}">
+            <span  th:if="${task.activity.size() > 0}" th:text="|${#dates.format(task.activity[0].date, 'dd-MM-yyyy')} ${task.activity[0].time}"></span>
+            <span  th:if="${task.activity.size() == 0}"></span>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

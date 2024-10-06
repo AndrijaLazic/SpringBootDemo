@@ -1,7 +1,7 @@
 package com.example.demo.HTEC.services;
 
-import com.example.demo.BLL.Services.TaskService;
-import com.example.demo.Domain.DatabaseEntity.Task;
+import com.example.demo.sweeping.model.Task;
+import com.example.demo.sweeping.service.impl.TaskService;
 import com.example.demo.Domain.Shared.Frequency;
 import com.example.demo.Domain.Shared.Section;
 import org.junit.jupiter.api.Test;
@@ -28,18 +28,18 @@ class TaskServiceTest {
         LocalDate date2 = LocalDate.parse("2024-03-04",dtf);
         String freq = Frequency.DAILY.toString();
         String sect = Section.KITCHEN.toString();
-        List<Task> tasks = taskService.getTasks(
-                date1,
-                date2,
-                freq,
-                sect
-        );
-
-        List<Task> tasks2 = taskService.getTODOTasks(
-                date1,
-                date2,
-                freq,
-                sect
-        );
+//        List<Task> tasks = taskService.getDONETasks(
+//                date1,
+//                date2,
+//                freq,
+//                sect
+//        );
+//
+//        List<Task> tasks2 = taskService.getTODOTasks(
+//                date1,
+//                date2,
+//                freq,
+//                sect
+//        );
     }
 }

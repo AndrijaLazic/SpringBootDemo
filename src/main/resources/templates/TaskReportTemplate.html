@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <style>
+      h2 {
+        text-align: center;
+      }
+      .activities {
+        width: 100%;
+      }
+      .activities,
+      .activities th,
+      .activities td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      #datumPolja {
+        height: 30px;
+      }
+      .activities td,
+      th {
+        padding: 5px;
+      }
+      .time {
+        text-align: center;
+      }
+
+      .time span {
+        padding: 0 10px;
+      }
+      .title {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 th:text="${mainTitle}">Main title</h2>
+    <h3>Odgovorno lice:</h3>
+
+    <h3>
+      Vremenski period: <span th:text="${startDate}">01-01-2024</span>  /  <span th:text="${endDate}">01-01-2024</span>
+    </h3>
+
+    <br />
+	
+    <table class="activities">
+      <tr>
+        <th>Naziv</th>
+        <th>Učestalost</th>
+		<th>Odsek</th>
+		<th>Datum izvršenja</th>
+		<th>Vreme izvršenja</th>
+      </tr>
+      <tr th:each="task: ${tasks}">
+		<td th:text="${task.name}"></td>
+		<td th:text="${task.frequency}"></td>
+		<td th:text="${task.section}"></td>
+        <td th:text="${task.date != null ? task.date : ''}"></td>
+        <td th:text="${task.time != null ? task.time : ''}"></td>
+      </tr>
+    </table>
+   
+  </body>
+</html>

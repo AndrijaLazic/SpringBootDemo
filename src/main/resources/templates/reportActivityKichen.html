@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        h2{
+            text-align: center;
+        }
+        .activities {
+            width: 100%;
+        }
+        .activities, .activities th, .activities td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        #datumPolja{
+            height:30px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            text-align: center;
+    }
+    </style>
+</head>
+<body>
+<h2>Nedeljna cek lista higijene i asortimana kuhinje</h2>
+<h3>Odgovorno lice: </h3>
+
+<h3>Za godinu/mesec: <span th:text="${currentMonth}"></span> </h3>
+
+<br />
+<table class="activities">
+
+    <tr style="color: brown;">
+        <th colspan="6"> <h3>Redovno dnevno odrzavanje kuhinje</h3></th>
+    </tr>
+
+    <tr>
+        <th>Opis poslova u kuhinji</th>
+        <th>Datum obilaska </th>
+        <th>Datum obilaska </th>
+        <th>Datum obilaska </th>
+        <th>Datum obilaska </th>
+        <th>Datum obilaska </th>
+    </tr>
+    <tr></tr>
+    <tr>
+        <th></th> <!-- uradjeno je ovako samo u svrhu demonstracije -->
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th th:each="task: ${datesForWeek1}">
+            <span th:text="${task}"></span>
+        </th>
+    </tr>
+
+    <tr th:each="entry : ${activityListDailyWeek1}"><!-- week 1 -->
+        <td th:text="${entry.key}"></td>
+        <td></td> <!-- uradjeno je ovako samo u svrhu demonstracije -->
+        <td></td>
+        <td></td>
+        <td></td>
+        <td th:each="detail : ${entry.value}">
+            <ul>
+                <li th:each="time : ${detail.time}" th:text="${time}"></li>
+            </ul>
+        </td>
+    </tr>
+
+    <tr></tr>
+
+    <tr>
+        <th></th>
+        <th th:each="task: ${datesForWeek2}">
+            <span th:text="${task}"></span>
+        </th>
+    </tr>
+
+    <tr th:each="entry : ${activityListDailyWeek2}"><!-- week 2 -->
+        <td th:text="${entry.key}"></td>
+        <td th:each="detail : ${entry.value}">
+            <ul>
+                <li th:each="time : ${detail.time}" th:text="${time}"></li>
+            </ul>
+        </td>
+    </tr>
+    <tr></tr>
+
+    <tr>
+        <th></th>
+        <th th:each="task: ${datesForWeek3}">
+            <span th:text="${task}"></span>
+        </th>
+    </tr>
+
+    <tr th:each="entry : ${activityListDailyWeek3}"><!-- week 3 -->
+        <td th:text="${entry.key}"></td>
+        <td th:each="detail : ${entry.value}">
+            <ul>
+                <li th:each="time : ${detail.time}" th:text="${time}"></li>
+            </ul>
+        </td>
+    </tr>
+    <tr></tr>
+    <tr style="color: brown;">
+        <th colspan="6"> <h3>Nedeljno odrzavanje kuhinje</h3></th>
+    </tr>
+
+    <tr th:each="entry : ${activityListWeekly}"><!-- week 3 -->
+        <td th:text="${entry.key}"></td>
+        <td th:each="detail : ${entry.value}">
+            <ul>
+                <span th:text="${detail.date}"></span> <br/> <span th:each="time : ${detail.time}" th:text="${time}"></span>
+            </ul>
+        </td>
+    </tr>
+
+
+    <tr style="color: brown;">
+        <th colspan="6"> <h3>Mesecno odrzavanje kuhinje</h3></th>
+    </tr>
+
+    <tr th:each="entry : ${activityListMonthly}"><!-- week 3 -->
+        <td th:text="${entry.key}"></td>
+        <td th:each="detail : ${entry.value}">
+            <ul>
+                <span th:text="${detail.date}"></span> <br/><span th:each="time : ${detail.time}" th:text="${time}"></span>
+            </ul>
+        </td>
+    </tr>
+
+</table>
+</body>
+</html>

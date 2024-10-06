@@ -5,22 +5,15 @@ import com.example.demo.Domain.DTO.UserRegistrationDTO;
 import com.example.demo.Domain.DatabaseEntity.User;
 import com.example.demo.Domain.DatabaseEntity.WorkerType;
 import com.example.demo.Domain.Shared.PasswordClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
 import java.sql.SQLDataException;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
