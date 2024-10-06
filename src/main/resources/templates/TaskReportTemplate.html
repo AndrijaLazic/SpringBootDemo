@@ -7,6 +7,8 @@
       }
       .activities {
         width: 100%;
+		page-break-after: always;
+		
       }
       .activities,
       .activities th,
@@ -31,10 +33,28 @@
       .title {
         text-align: center;
       }
+	  #tableHeader{
+		background-color: #2cb3e8;
+		color:white;
+	  }
+	  #reportHeader{
+		  flex-direction: row;
+		  display: flex;
+		  height: 100px;
+		  justify-content: space-between;
+	  }
+
+	  .evenTableRow{
+		background-color:#bfedff;
+	  }
     </style>
   </head>
   <body>
-    <h2 th:text="${mainTitle}">Main title</h2>
+	<div id="reportHeader">
+		<h1 th:text="${mainTitle}">Main title</h1>
+	</div>
+	
+    
     <h3>Odgovorno lice:</h3>
 
     <h3>
@@ -43,22 +63,25 @@
 
     <br />
 	
-    <table class="activities">
-      <tr>
+    <table class="activities" th:each="instance : ${mapOfTasks}">
+	  <tr id="tableHeader">
+		 <th colspan="1">Datum</th>
+		 <th th:text="${instance.key}" colspan="3">datum</th>
+	  </tr>
+
+      <tr id="tableHeader">
         <th>Naziv</th>
         <th>Učestalost</th>
 		<th>Odsek</th>
-		<th>Datum izvršenja</th>
 		<th>Vreme izvršenja</th>
       </tr>
-      <tr th:each="task: ${tasks}">
+      <tr th:each="task,iter : ${instance.value}" th:class="${!iter.odd}? evenTableRow : oddTableRow">
 		<td th:text="${task.name}"></td>
 		<td th:text="${task.frequency}"></td>
 		<td th:text="${task.section}"></td>
-        <td th:text="${task.date != null ? task.date : ''}"></td>
         <td th:text="${task.time != null ? task.time : ''}"></td>
       </tr>
     </table>
-   
+	
   </body>
 </html>

@@ -1,13 +1,11 @@
 package com.example.demo.sweeping.model;
 
-import com.example.demo.sweeping.dtos.TaskReportRequestDTO;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.cglib.core.Local;
 import org.thymeleaf.context.Context;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Setter
 @Getter
@@ -16,7 +14,7 @@ public class TaskReportTemplate {
     String startDate;
     String endDate;
 
-    List<TaskReportInfo> tasks;
+    Map<String,List<TaskReportInfo>> tasks;
 
     public TaskReportTemplate(String mainTitle, String startDate, String endDate) {
         this.mainTitle = mainTitle;
@@ -29,7 +27,7 @@ public class TaskReportTemplate {
         context.setVariable("mainTitle", this.mainTitle);
         context.setVariable("startDate", this.startDate);
         context.setVariable("endDate", this.endDate);
-        context.setVariable("tasks", tasks);
+        context.setVariable("mapOfTasks", tasks);
 
         return context;
     }

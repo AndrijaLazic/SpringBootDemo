@@ -108,7 +108,7 @@ public class PdfGeneratorServiceImpl {
 
         LocalDate startLocalDate = LocalDate.parse(request.getStartDate(), formatter);
         LocalDate endLocalDate = LocalDate.parse(request.getEndDate(), formatter);
-        List<TaskReportInfo> tasks = taskService.getTasks(startLocalDate, endLocalDate, request.getState(), request.getFrequencies(), request.getSections());
+        Map<String, List<TaskReportInfo>> tasks = taskService.getTasksForDateRange(startLocalDate, endLocalDate, request.getState(), request.getFrequencies(), request.getSections());
 
         TaskReportTemplate reportTemplate = new TaskReportTemplate("Izvestaj", request.getStartDate(), request.getEndDate());
         reportTemplate.setTasks(tasks);

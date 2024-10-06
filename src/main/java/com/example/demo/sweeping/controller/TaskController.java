@@ -5,6 +5,7 @@ import com.example.demo.sweeping.dtos.TaskResponseDto;
 import com.example.demo.sweeping.mappers.TaskReportInfoMapper;
 import com.example.demo.sweeping.model.Section;
 import com.example.demo.sweeping.model.Task;
+import com.example.demo.sweeping.model.TaskReportInfo;
 import com.example.demo.sweeping.service.impl.PdfGeneratorServiceImpl;
 import com.example.demo.sweeping.service.impl.TaskService;
 import com.example.demo.sweeping.util.SweepingUtils;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/tasks")
@@ -31,16 +33,14 @@ public class TaskController {
     private final TaskReportInfoMapper taskReportInfoMapper;
 
     @PostMapping
-    public List<TaskResponseDto> getTaskReport(@RequestBody TaskReportRequestDTO taskReportRequestDTO) {
+    public Map<String,List<TaskReportInfo>> getTaskReport(@RequestBody TaskReportRequestDTO taskReportRequestDTO) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         LocalDate startLocalDate = LocalDate.parse(taskReportRequestDTO.getStartDate(), formatter);
         LocalDate endLocalDate = LocalDate.parse(taskReportRequestDTO.getEndDate(), formatter);
-        return taskReportInfoMapper.taskReportInfoToTaskResponseDtoList(
-                taskService.getTasks(startLocalDate, endLocalDate, taskReportRequestDTO.getState(), taskReportRequestDTO.getFrequencies(), taskReportRequestDTO.getSections())
-        );
-    }
 
+        return taskService.getTasksForDateRange(startLocalDate, endLocalDate, taskReportRequestDTO.getState(), taskReportRequestDTO.getFrequencies(), taskReportRequestDTO.getSections());
+    }
 
     @PostMapping("/report")
     public ResponseEntity<byte[]> createTaskReport(@RequestBody TaskReportRequestDTO taskReportRequestDTO) {
