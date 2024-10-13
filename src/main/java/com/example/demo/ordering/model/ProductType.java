@@ -1,4 +1,4 @@
-package com.example.demo.Domain.DatabaseEntity;
+package com.example.demo.ordering.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -11,7 +11,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name = "ProductType")
-@Table(name = "product_type")
+@Table(name = "product_type", schema = "everyday_service_database")
+@AllArgsConstructor
 @NoArgsConstructor
 public class ProductType {
     @Id

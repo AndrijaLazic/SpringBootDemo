@@ -1,6 +1,5 @@
-package com.example.demo.Domain.DTO;
+package com.example.demo.ordering.dtos;
 
-import com.example.demo.Domain.DatabaseEntity.Product;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Value;
@@ -8,15 +7,17 @@ import lombok.Value;
 import java.io.Serializable;
 
 /**
- * DTO for {@link Product}
+ * DTO for {@link com.example.demo.ordering.model.Product}
  */
 @Value
-public class ProductRequest implements Serializable {
+public class ProductDto implements Serializable {
+    Long id;
     @NotNull
     @Size(max = 255)
     String name;
     @NotNull
     @Size(max = 255)
     String unitOfMeasure;
-    String productType;
+    Long productTypeId;
+    String productTypeName;
 }

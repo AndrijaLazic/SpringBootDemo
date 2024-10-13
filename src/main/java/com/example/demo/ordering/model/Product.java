@@ -1,17 +1,21 @@
-package com.example.demo.Domain.DatabaseEntity;
+package com.example.demo.ordering.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity(name = "Product")
-@Table(name = "product", indexes = {
+@Table(name = "product", schema = "everyday_service_database", indexes = {
         @Index(name = "product_type_id", columnList = "product_type_id")
 })
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,4 +36,9 @@ public class Product {
     @JoinColumn(name = "product_type_id")
     private ProductType productType;
 
+    public Product(String name, String unitOfMeasure, ProductType productType) {
+        this.name = name;
+        this.unitOfMeasure = unitOfMeasure;
+        this.productType = productType;
+    }
 }
